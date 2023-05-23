@@ -41,5 +41,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <h1>Hello World</h1>
         <div><button id="apiButton">Send API Request!</button></div>
+    
+    <script>
+  // Function to send the GET API request
+  function sendApiRequest() {
+    var dataLayer = window.dataLayer || [];
+    var queryParams = '';
+
+    // Loop through the data layer variables and append them as query string parameters
+    for (var i = 0; i < dataLayer.length; i++) {
+      var key = Object.keys(dataLayer[i])[0];
+      var value = dataLayer[i][key];
+      queryParams += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+    }
+
+    // Remove the leading '&' character
+    queryParams = queryParams.slice(1);
+
+    // Replace the API_ENDPOINT with your actual API endpoint
+    var apiUrl = 'http://httpbin.org/?' + queryParams;
+
+    // Send the GET request
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Handle the API response
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+  }
+
+  // Add an event listener to the button
+  var button = document.getElementById('apiButton');
+  button.addEventListener('click', sendApiRequest);
+</script>
+    
   </body>
 </html>
