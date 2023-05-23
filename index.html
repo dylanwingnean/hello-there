@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script>
-  // Function to parse the query string
-  function getQueryParams() {
-    var queryString = window.location.search;
-    var params = new URLSearchParams(queryString);
-    return params;
+   <script>
+  // Function to get query string parameters from URL
+  function getQueryStringValue(key) {
+    return decodeURIComponent(window.location.search.replace(
+      new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
   }
 
-  // Example usage
-  var queryParams = getQueryParams();
-  var key = queryParams.get('key');
-  var value = queryParams.get('value');
-
-  // Push key-value pair to the data layer
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    'key': key,
-    'value': value
-  });
-
-  // Output the values (you can modify this to suit your needs)
-  console.log('Key:', key);
-  console.log('Value:', value);
+  // Push key and value to the GTM data layer
+  var key = getQueryStringValue('key');
+  var value = getQueryStringValue('value');
+  
+  // Check if GTM is available and the key and value are defined
+  if (typeof dataLayer !== 'undefined' && key && value) {
+    dataLayer.push({
+      'key': key,
+      'value': value
+    });
+  }
 </script>
     <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -40,43 +35,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <h1>Hello World</h1>
-        <div><button id="apiButton">Send API Request!</button></div>
-    
+        <button id="apiButton">Send API Request!</button>
     <script>
-  // Function to send the GET API request
-  function sendApiRequest() {
-    var dataLayer = window.dataLayer || [];
-    var queryParams = '';
+  // Function to send API request
+  function sendAPIRequest() {
+    // Get the key and value from the GTM data layer
+    var key = '{{key}}';
+    var value = '{{value}}';
 
-    // Loop through the data layer variables and append them as query string parameters
-      var key = window.dataLayer[0].key;
-      var value = window.dataLayer[0].value;
-      queryParams += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
-    
-
-    // Remove the leading '&' character
-    queryParams = queryParams.slice(1);
-
-    // Replace the API_ENDPOINT with your actual API endpoint
-    var apiUrl = 'http://httpbin.org/get?' + queryParams;
+    // Construct the API URL with the query string parameters
+    var apiUrl = 'https://httpbin.org/get?key=' + encodeURIComponent(key) + '&value=' + encodeURIComponent(value);
 
     // Send the GET request
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
-        // Handle the API response
         console.log(data);
       })
       .catch(error => {
-        // Handle any errors
         console.error('Error:', error);
       });
   }
-
-  // Add an event listener to the button
-  var button = document.getElementById('apiButton');
-  button.addEventListener('click', sendApiRequest);
 </script>
-    
   </body>
 </html>
