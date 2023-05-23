@@ -49,11 +49,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     var queryParams = '';
 
     // Loop through the data layer variables and append them as query string parameters
-    for (var i = 0; i < dataLayer.length; i++) {
-      var key = Object.keys(dataLayer[i])[0];
-      var value = dataLayer[i][key];
+      var key = window.dataLayer[0].key;
+      var value = window.dataLayer[0].value;
       queryParams += '&' + encodeURIComponent(key) + '=' + encodeURIComponent(value);
-    }
+    
 
     // Remove the leading '&' character
     queryParams = queryParams.slice(1);
