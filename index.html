@@ -1,70 +1,66 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-K4NG57N');</script>
-<!-- End Google Tag Manager -->
-    
-    <title>Hello World</title>
-  </head>
-  <body>
-<script>
-  // Function to extract key and value from the URL and push to the data layer
-  function extractKeyAndValueFromURL() {
-    // Get the URL search params
-    var urlParams = new URLSearchParams(window.location.search);
-
-    // Extract the values of key and value
-    var key = urlParams.get('key');
-    var value = urlParams.get('value');
-
-    // Push the key and value to the data layer
-    dataLayer.push({
-      'event': 'customEvent', // Replace with your desired event name
-      'key': key,
-      'value': value
-    });
-  }
-
-  // Call the function to extract key and value from the URL
-  extractKeyAndValueFromURL();
-</script>
-    
-    <script>
-  // Function to make the API request
-  function makeApiRequest() {
-    // Get the key-value pairs from the GTM data layer
-    var key = dataLayer[0].key; // Replace 'key' with your actual GTM variable name for the key
-    var value = dataLayer[0].value; // Replace 'value' with your actual GTM variable name for the value
-    console.log("Key:", key);
-console.log("Value:", value);
-
-    // Construct the API URL with the query string parameters
-    var apiUrl = 'https://httpbin.org/get?key=' + key + '&value=' + value;
-
-    // Make the GET request
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        // Log the response in the console
-        console.log(data);
-      })
-      .catch(error => {
-        console.log('Error:', error);
-      });
-  }
-    </script>
-    <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4NG57N"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-    
-    <h1>Hello World</h1>
-        <button onclick="makeApiRequest()">Make API Request</button>
-  </body>
+   <head>
+      <!-- Google Tag Manager -->
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-K4NG57N');
+      </script>
+      <!-- End Google Tag Manager -->
+      <title>Hello World</title>
+   </head>
+   <body>
+      <script>
+         // Function to extract key and value from the URL and push to the data layer
+         function extractKeyAndValueFromURL() {
+           // Get the URL search params
+           var urlParams = new URLSearchParams(window.location.search);
+         
+           // Extract the values of key and value
+           var key = urlParams.get('key');
+           var value = urlParams.get('value');
+         
+           // Push the key and value to the data layer
+           dataLayer.push({
+             'event': 'customEvent', // Replace with your desired event name
+             'key': key,
+             'value': value
+           });
+         }
+         
+         // Call the function to extract key and value from the URL
+         extractKeyAndValueFromURL();
+      </script>
+      <script>
+         // Function to make the API request
+         function makeApiRequest() {
+           // Get the key-value pairs from the GTM data layer
+           var key = dataLayer[0].key; // 
+           var value = dataLayer[0].value;
+         
+           // Construct the API URL with the query string parameters
+           var apiUrl = 'https://httpbin.org/get?key=' + key + '&value=' + value;
+         
+           // Make the GET request
+           fetch(apiUrl)
+             .then(response => response.json())
+             .then(data => {
+               // Log the response in the console
+               console.log(data);
+             })
+             .catch(error => {
+               console.log('Error:', error);
+             });
+         }
+           
+      </script>
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4NG57N"
+         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+      <h1>Hello World</h1>
+      <button onclick="makeApiRequest()">Make API Request</button>
+   </body>
 </html>
