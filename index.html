@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
    <head>
+      <style>
+    img {
+      width: 300px;
+      border-radius: 50%;
+    }
+  </style>
       <!-- Google Tag Manager -->
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -60,7 +66,33 @@
       <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4NG57N"
          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <!-- End Google Tag Manager (noscript) -->
-      <h1>Hello World</h1>
+      <h1>Hello impact.com</h1>
+      <p>Here's a random fact about doggos:</p>
+        <p id="random-fact"></p>
+  
+  <script>
+    // Array of random facts
+    var facts = [
+      "Dogs have an exceptional sense of smell, with over 220 million scent receptors in their noses!",
+      "A dog's nose print is unique, much like a human's fingerprint.",
+      "Dalmatians are born completely white and develop their spots as they grow older.",
+      "The tallest dog ever recorded was a Great Dane named Zeus, measuring 44 inches from paw to shoulder.",
+      "Dogs have three eyelids: an upper lid, a lower lid, and a third lid called a haw, which helps protect their eyes.",
+      "The Basenji is known as the 'barkless dog' because it doesn't bark but makes other unique vocalizations.",
+      "The world's oldest dog breed is the Saluki, dating back to ancient Egypt over 5,000 years ago.",
+      "Dogs have been used for therapeutic purposes in hospitals, retirement homes, and schools due to their calming effects.",
+      "Labrador Retrievers are the most popular dog breed in the United States.",
+      "The average dog can run up to speeds of 19 miles per hour!"
+    ];
+    
+    // Generate a random fact
+    var randomFact = facts[Math.floor(Math.random() * facts.length)];
+    
+    // Display the random fact on the webpage
+    var factElement = document.getElementById("random-fact");
+    factElement.textContent = randomFact;
+  </script>
+       <img src="dog_with_shoe.jpg" alt="Cute Dog with Shoe">
       <button onclick="makeApiRequest()">Make API Request</button>
    </body>
 </html>
