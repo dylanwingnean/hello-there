@@ -25,6 +25,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     // Example usage
     pushToDataLayer('key', 'value');
   </script>
+    <script>
+  // Function to make the API request
+  function makeApiRequest() {
+    // Get the key-value pairs from the GTM data layer
+    var key = dataLayer[0].key; // Replace 'key' with your actual GTM variable name for the key
+    var value = dataLayer[0].value; // Replace 'value' with your actual GTM variable name for the value
+
+    // Construct the API URL with the query string parameters
+    var apiUrl = 'https://httpbin.org/get?key=' + key + '&value=' + value;
+
+    // Make the GET request
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        // Log the response in the console
+        console.log(data);
+      })
+      .catch(error => {
+        console.log('Error:', error);
+      });
+  }
+    </script>
     <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4NG57N"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
