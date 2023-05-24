@@ -31,8 +31,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       // Push the key-value pair to the data layer
       dataLayer.push({
-        'key1': key,
-        'value1': value
+        'key': key,
+        'value': value
       });
     });
   }
@@ -45,8 +45,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   // Function to make the API request
   function makeApiRequest() {
     // Get the key-value pairs from the GTM data layer
-    var key = dataLayer[0].key1; // Replace 'key' with your actual GTM variable name for the key
-    var value = dataLayer[0].value1; // Replace 'value' with your actual GTM variable name for the value
+    var key = dataLayer[0].key; // Replace 'key' with your actual GTM variable name for the key
+    var value = dataLayer[0].value; // Replace 'value' with your actual GTM variable name for the value
     console.log("Key:", key);
 console.log("Value:", value);
 
