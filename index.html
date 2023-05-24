@@ -13,18 +13,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <title>Hello World</title>
   </head>
   <body>
-    <script>
-    // Function to push key-value pair to GTM data layer
-    function pushToDataLayer(key, value) {
-      dataLayer.push({
-        'key1': key,
-        'value1': value
-      });
-    }
+   <script>
+  // Function to extract key-value pairs from the URL
+  function extractKeyValueFromURL() {
+    // Get the URL query string
+    var queryString = window.location.search.substring(1);
 
-    // Example usage
-    pushToDataLayer('key1', 'value1');
-  </script>
+    // Split the query string into individual key-value pairs
+    var keyValuePairs = queryString.split('&');
+
+    // Iterate through the key-value pairs
+    keyValuePairs.forEach(function(keyValuePair) {
+      // Split each key-value pair into key and value
+      var keyValue = keyValuePair.split('=');
+      var key = decodeURIComponent(keyValue[0]); // Decode the key
+      var value = decodeURIComponent(keyValue[1]); // Decode the value
+
+      // Push the key-value pair to the GTM data layer
+      dataLayer.push({
+        'key': key,
+        'value': value
+      });
+    });
+  }
+
+  // Call the function to extract key-value pairs from the URL
+  extractKeyValueFromURL();
+</script>
     
     <script>
   // Function to make the API request
